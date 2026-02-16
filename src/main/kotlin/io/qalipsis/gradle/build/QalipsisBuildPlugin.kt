@@ -115,6 +115,7 @@ class QalipsisBuildPlugin : Plugin<Project> {
                     sourceSet.resources.srcDir(generatedResourcesDir)
                 }
                 subproject.tasks.named("processResources") { it.dependsOn(metricsReportTask) }
+                subproject.tasks.matching { it.name == "sourcesJar" }.configureEach { it.dependsOn(metricsReportTask) }
             }
         }
 
@@ -127,6 +128,7 @@ class QalipsisBuildPlugin : Plugin<Project> {
                 sourceSet.resources.srcDir(generatedResourcesDir)
             }
             project.tasks.named("processResources") { it.dependsOn(metricsReportTask) }
+            project.tasks.matching { it.name == "sourcesJar" }.configureEach { it.dependsOn(metricsReportTask) }
         }
     }
 
